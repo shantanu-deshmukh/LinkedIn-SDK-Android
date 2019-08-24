@@ -14,9 +14,9 @@ import android.view.WindowManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.shantanudeshmukh.linkedinsdk.HelpClasses.LinkedInUser;
-import com.shantanudeshmukh.linkedinsdk.HelpClasses.OnBasicProfileListener;
-import com.shantanudeshmukh.linkedinsdk.HelpClasses.RequestHandler;
+import com.shantanudeshmukh.linkedinsdk.helpers.LinkedInUser;
+import com.shantanudeshmukh.linkedinsdk.helpers.OnBasicProfileListener;
+import com.shantanudeshmukh.linkedinsdk.helpers.RequestHandler;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -53,7 +53,7 @@ public class LinkedInAuthenticationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_linkedin_authentication);
+        setContentView(R.layout.sh_linkedin_activity_linkedin_authentication);
 
         //enable fullscreen mode
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -266,7 +266,7 @@ public class LinkedInAuthenticationActivity extends AppCompatActivity {
             if (progressDialog == null) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(LinkedInAuthenticationActivity.this);
                 builder.setCancelable(false); // if you want user to wait for some process to finish,
-                builder.setView(R.layout.layout_progress_dialog);
+                builder.setView(R.layout.sh_linkedin_layout_progress_dialog);
                 progressDialog = builder.create();
             }
             progressDialog.show();

@@ -1,6 +1,9 @@
 apply plugin: 'com.android.library'
 
 android {
+
+    resourcePrefix "sh_linkedin_"
+
     compileSdkVersion rootProject.ext.compileSdkVersion
 
 

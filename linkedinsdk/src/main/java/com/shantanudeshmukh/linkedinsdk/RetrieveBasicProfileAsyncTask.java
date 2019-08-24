@@ -3,9 +3,9 @@ package com.shantanudeshmukh.linkedinsdk;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.shantanudeshmukh.linkedinsdk.HelpClasses.LinkedInUser;
-import com.shantanudeshmukh.linkedinsdk.HelpClasses.OnBasicProfileListener;
-import com.shantanudeshmukh.linkedinsdk.HelpClasses.RequestHandler;
+import com.shantanudeshmukh.linkedinsdk.helpers.LinkedInUser;
+import com.shantanudeshmukh.linkedinsdk.helpers.OnBasicProfileListener;
+import com.shantanudeshmukh.linkedinsdk.helpers.RequestHandler;
 
 import org.json.JSONException;
 import org.json.JSONObject;

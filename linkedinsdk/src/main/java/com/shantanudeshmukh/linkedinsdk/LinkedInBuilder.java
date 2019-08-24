@@ -6,7 +6,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.shantanudeshmukh.linkedinsdk.HelpClasses.OnBasicProfileListener;
+import com.shantanudeshmukh.linkedinsdk.helpers.OnBasicProfileListener;
 
 import java.util.Random;
 

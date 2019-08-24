@@ -1,4 +1,4 @@
-package com.shantanudeshmukh.linkedinsdk.HelpClasses;
+package com.shantanudeshmukh.linkedinsdk.helpers;
 
 import android.util.Log;
 

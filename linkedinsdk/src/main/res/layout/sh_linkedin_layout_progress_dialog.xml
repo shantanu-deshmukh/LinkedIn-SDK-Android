@@ -13,5 +13,5 @@
         android:layout_height="match_parent"
         android:layout_weight="4"
         android:gravity="center"
-        android:text="@string/progress_dialog_message" />
+        android:text="@string/sh_linkedin_progress_dialog_message" />
 </LinearLayout>

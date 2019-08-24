@@ -1,4 +1,4 @@
-package com.shantanudeshmukh.linkedinsdk.HelpClasses;
+package com.shantanudeshmukh.linkedinsdk.helpers;
 
 import android.os.Parcel;
 import android.os.Parcelable;

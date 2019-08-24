@@ -27,7 +27,7 @@ ext {
 
     // LinkedIn SDK Library Info
     libVersionCode = 1
-    libVersionName = '0.0.1' //TODO: update this before release
+    libVersionName = '1.0.0'
 
 }
 

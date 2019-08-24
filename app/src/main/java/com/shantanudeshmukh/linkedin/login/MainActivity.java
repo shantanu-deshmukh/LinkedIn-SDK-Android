@@ -15,8 +15,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.shantanudeshmukh.linkedinsdk.HelpClasses.LinkedInUser;
-import com.shantanudeshmukh.linkedinsdk.HelpClasses.OnBasicProfileListener;
+import com.shantanudeshmukh.linkedinsdk.helpers.LinkedInUser;
+import com.shantanudeshmukh.linkedinsdk.helpers.OnBasicProfileListener;
 import com.shantanudeshmukh.linkedinsdk.LinkedInBuilder;
 
 import org.json.JSONException;
