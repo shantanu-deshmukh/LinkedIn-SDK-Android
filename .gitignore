@@ -52,3 +52,5 @@ captures/
 # Google Services (e.g. APIs or Firebase)
 google-services.json
 
+linkedin-credentials.json
+app/src/main/assets/linkedin-credentials.json
