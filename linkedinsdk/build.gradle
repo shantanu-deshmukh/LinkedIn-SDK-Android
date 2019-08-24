@@ -36,3 +36,5 @@ dependencies {
     androidTestImplementation "androidx.test:runner:$rootProject.ext.testRunnerVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.ext.espressoCoreVersion"
 }
+
+apply from: './scripts/bintrayConfig.gradle'

@@ -98,7 +98,7 @@ public class LinkedInBuilder {
         intent.putExtra(STATE, state);
     }
 
-    public static void retrieveBasicProfile(@NonNull String accessToken, long accessTokenExpiry,@NonNull OnBasicProfileListener onBasicProfileListener) {
+    public static void retrieveBasicProfile(@NonNull String accessToken, long accessTokenExpiry, @NonNull OnBasicProfileListener onBasicProfileListener) {
         new RetrieveBasicProfileAsyncTask(accessToken, accessTokenExpiry, onBasicProfileListener).execute();
     }
 
