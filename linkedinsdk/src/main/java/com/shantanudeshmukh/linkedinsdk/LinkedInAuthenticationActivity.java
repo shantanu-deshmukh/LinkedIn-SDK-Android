@@ -15,6 +15,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.shantanudeshmukh.linkedinsdk.HelpClasses.LinkedInUser;
+import com.shantanudeshmukh.linkedinsdk.HelpClasses.OnBasicProfileListener;
 import com.shantanudeshmukh.linkedinsdk.HelpClasses.RequestHandler;
 
 import org.json.JSONException;
@@ -57,7 +58,7 @@ public class LinkedInAuthenticationActivity extends AppCompatActivity {
         //enable fullscreen mode
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        if(getSupportActionBar() != null){
+        if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
 
@@ -138,21 +139,6 @@ public class LinkedInAuthenticationActivity extends AppCompatActivity {
 
                     retrieveAccessTokenFromAPI(authorizationToken);
 
-                    if (linkedInUser.getAccessToken() != null) {
-
-                        retrieveBasicProfile();
-
-                        retrieveEmailFromAPI();
-
-                        return linkedInUser.getId() != null;
-
-                    } else {
-
-                        return false;
-
-                    }
-
-
                 } catch (IOException e) {
                     e.printStackTrace();
                     return false;
@@ -169,18 +155,47 @@ public class LinkedInAuthenticationActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean didSuccess) {
             super.onPostExecute(didSuccess);
-            hideProgressDialog();
 
-            Intent intent = new Intent();
-            if (didSuccess) {
-                intent.putExtra("social_login", linkedInUser);
-                setResult(Activity.RESULT_OK, intent);
+
+
+            if (linkedInUser.getAccessToken() != null) {
+
+                LinkedInBuilder.retrieveBasicProfile(linkedInUser.getAccessToken(), linkedInUser.getAccessTokenExpiry(), new OnBasicProfileListener() {
+                    @Override
+                    public void onDataRetrievalStart() {
+                    }
+
+                    @Override
+                    public void onDataSuccess(LinkedInUser linkedInUser) {
+                        hideProgressDialog();
+                        Intent intent = new Intent();
+                        intent.putExtra("social_login", linkedInUser);
+                        setResult(Activity.RESULT_OK, intent);
+                        finish();
+                    }
+
+                    @Override
+                    public void onDataFailed(int errCode, String errMessage) {
+                        hideProgressDialog();
+                        Intent intent = new Intent();
+                        intent.putExtra("err_code", errCode);
+                        intent.putExtra("err_message", errMessage);
+                        setResult(Activity.RESULT_CANCELED, intent);
+                        finish();
+                    }
+                });
+
             } else {
+
+                hideProgressDialog();
+                Intent intent = new Intent();
                 intent.putExtra("err_code", LinkedInBuilder.ERROR_FAILED);
                 intent.putExtra("err_message", "AUTHORIZATION FAILED");
                 setResult(Activity.RESULT_CANCELED, intent);
+                finish();
+
             }
-            finish();
+
         }
     }
 
@@ -245,53 +260,6 @@ public class LinkedInAuthenticationActivity extends AppCompatActivity {
                 + AMPERSAND + REDIRECT_URI_PARAM + EQUALS + REDIRECT_URI
                 + AMPERSAND + "scope=r_liteprofile%20r_emailaddress";
     }
-
-
-    /**
-     * Method that retrieves user basic info from LinkedIn API
-     */
-    public void retrieveBasicProfile() throws IOException, JSONException {
-
-        String profileUrl = "https://api.linkedin.com/v2/me?projection=(id,firstName,lastName,profilePicture(displayImage~:playableStreams))";
-        String result = RequestHandler.sendGet(profileUrl, linkedInUser.getAccessToken());
-        if (result != null) {
-
-            JSONObject jsonObject = new JSONObject(result);
-
-            String linkedInUserId = jsonObject.getString("id");
-            String country = jsonObject.getJSONObject("firstName").getJSONObject("preferredLocale").getString("country");
-            String language = jsonObject.getJSONObject("firstName").getJSONObject("preferredLocale").getString("language");
-            String firstNameKey = language + "_" + country;
-            String linkedInUserFirstName = jsonObject.getJSONObject("firstName").getJSONObject("localized").getString(firstNameKey);
-            String linkedInUserLastName = jsonObject.getJSONObject("lastName").getJSONObject("localized").getString(firstNameKey);
-            String linkedInUserProfile = jsonObject.getJSONObject("profilePicture").getJSONObject("displayImage~").getJSONArray("elements").getJSONObject(0).getJSONArray("identifiers").getJSONObject(0).getString("identifier");
-
-            linkedInUser.setId(linkedInUserId);
-            linkedInUser.setFirstName(linkedInUserFirstName);
-            linkedInUser.setLastName(linkedInUserLastName);
-            linkedInUser.setProfileUrl(linkedInUserProfile);
-
-        } else {
-            Log.e(LinkedInBuilder.TAG, "Failed To Retrieve Basic Profile");
-        }
-    }
-
-
-    /**
-     * Method that retrieves user email from LinkedIn emailAddress API
-     */
-    private void retrieveEmailFromAPI() throws IOException, JSONException {
-        String emailUrl = "https://api.linkedin.com/v2/emailAddress?q=members&projection=(elements*(handle~))";
-        String result = RequestHandler.sendGet(emailUrl, linkedInUser.getAccessToken());
-        if (result != null) {
-            JSONObject jsonObject = new JSONObject(result);
-            String email = jsonObject.getJSONArray("elements").getJSONObject(0).getJSONObject("handle~").getString("emailAddress");
-            linkedInUser.setEmail(email);
-        } else {
-            Log.e(LinkedInBuilder.TAG, "Failed To Retrieve Email from LinkedIn API");
-        }
-    }
-
 
     private void showProgressDialog() {
         if (!LinkedInAuthenticationActivity.this.isFinishing()) {

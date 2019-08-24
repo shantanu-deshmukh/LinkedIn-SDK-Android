@@ -4,6 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
+import com.shantanudeshmukh.linkedinsdk.HelpClasses.OnBasicProfileListener;
+
 import java.util.Random;
 
 public class LinkedInBuilder {
@@ -92,6 +96,10 @@ public class LinkedInBuilder {
             sb.append(ALLOWED_CHARACTERS.charAt(random.nextInt(ALLOWED_CHARACTERS.length())));
         this.state = sb.toString();
         intent.putExtra(STATE, state);
+    }
+
+    public static void retrieveBasicProfile(@NonNull String accessToken, long accessTokenExpiry,@NonNull OnBasicProfileListener onBasicProfileListener) {
+        new RetrieveBasicProfileAsyncTask(accessToken, accessTokenExpiry, onBasicProfileListener).execute();
     }
 
 }
