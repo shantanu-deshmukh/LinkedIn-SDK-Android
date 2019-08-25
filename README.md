@@ -179,10 +179,10 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Support
 =========
 If you need any help, feel free to connect with me on twitter 
-<a href="https://twitter.com/intent/tweet?screen_name=askShantanu&ref_src=twsrc%5Etfw" class="twitter-mention-button" data-show-count="false">@askShantanu</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+<a href="https://twitter.com/intent/tweet?screen_name=askShantanu&ref_src=twsrc%5Etfw" class="twitter-mention-button" data-show-count="false">@askShantanu</a>
 
 OR 
 
-Follow me for latest updates <a href="https://twitter.com/askShantanu?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">@askShantanu</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>.
+Follow me for latest updates <a href="https://twitter.com/askShantanu?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">@askShantanu</a>.
 
 See my other work at [shantanudeshmukh.com](https://shantanudeshmukh.com)
