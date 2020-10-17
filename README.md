@@ -170,6 +170,14 @@ LinkedInBuilder.getInstance(MainActivity.this)
         .setRedirectURI("<YOUR_REDIRECT_URL_HERE>")
         .setState("<YOUR_CSRF_TOKEN_HERE>")
         .authenticate(LINKEDIN_REQUEST_CODE);
+
+For integrating Linkedin:-
+Note:- We don't have to download any mobile sdk in new version
+step1:- Create an account in Linkedin Developer site
+Step2:- After creating your account you will get an CLIENT_ID and CLIENT_SECRET_KEY
+step3:-  Now go to LinkedInAuthenticationActivity Activity and assign values of both
+step4:- Now to have succesfully integrated your Linkedin Account
+
 ```
 
 Contributing
