@@ -1,3 +1,5 @@
+> This library is deprecated. Authentication via WebViews is no longer supported by Android. Please see [this](https://support.google.com/faqs/answer/12284343) for more details. 
+
 # LinkedIn-SDK-Android
 
 A lightweight android library to implement Login with LinkedIn in your Android app.
